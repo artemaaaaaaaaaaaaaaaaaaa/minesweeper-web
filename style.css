@@ -1,0 +1,521 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Навигация */
+.main-menu {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Кнопки */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Основной контент */
+main {
+    padding: 30px;
+    min-height: 400px;
+}
+
+.welcome-screen {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.welcome-screen h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+/* Игровое поле */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mines-counter {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.game-field {
+    display: inline-block;
+    border: 3px solid #333;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #ddd;
+    padding: 5px;
+}
+
+.field-header {
+    display: flex;
+}
+
+.column-header, .row-header {
+    background: #667eea;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+    min-width: 35px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.column-header:first-child {
+    background: transparent;
+    border: none;
+}
+
+.field-row {
+    display: flex;
+}
+
+.cell {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #999;
+    background: #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    user-select: none;
+}
+
+.cell:hover:not(.cell-revealed) {
+    background: #b0b0b0;
+}
+
+.cell-hidden {
+    background: linear-gradient(135deg, #d0d0d0 0%, #c0c0c0 100%);
+    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.5),
+                inset -2px -2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cell-hidden:active {
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.cell-number {
+    background: #e8e8e8;
+    cursor: default;
+}
+
+.cell-number-1 { color: #0000ff; }
+.cell-number-2 { color: #008000; }
+.cell-number-3 { color: #ff0000; }
+.cell-number-4 { color: #000080; }
+.cell-number-5 { color: #800000; }
+.cell-number-6 { color: #008080; }
+.cell-number-7 { color: #000000; }
+.cell-number-8 { color: #808080; }
+
+.cell-flag {
+    background: #ffd700;
+    font-size: 1.2em;
+}
+
+.cell-mine {
+    background: #ff6b6b;
+    font-size: 1.2em;
+}
+
+.cell-exploded {
+    background: #ff0000;
+    font-size: 1.2em;
+}
+
+/* Сообщения игры */
+.game-message {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.game-message-win {
+    background: #d4edda;
+    border: 2px solid #28a745;
+    color: #155724;
+}
+
+.game-message-lose {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    color: #721c24;
+}
+
+.game-message h2 {
+    margin-bottom: 10px;
+}
+
+/* Таблица игр */
+.games-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.games-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.games-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.games-table tr:hover {
+    background: #f5f5f5;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.1em;
+}
+
+.table-hint {
+    margin-top: 15px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+/* Повтор игры */
+.replay-header {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.replay-header h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.replay-header p {
+    margin: 5px 0;
+}
+
+.replay-header button {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+#replay-field-container {
+    margin: 20px 0;
+}
+
+#replay-move-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.move-description {
+    margin: 5px 0;
+    font-size: 1.05em;
+}
+
+.replay-complete {
+    margin-top: 10px;
+    padding: 10px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Справка */
+.help-content {
+    line-height: 1.8;
+}
+
+.help-content h3 {
+    color: #667eea;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.help-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.help-content li {
+    margin-bottom: 8px;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    padding: 15px;
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    color: #721c24;
+    border-radius: 6px;
+    margin: 20px 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .main-menu {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+
+    .column-header, .row-header {
+        min-width: 30px;
+        min-height: 30px;
+        padding: 6px;
+        font-size: 0.9em;
+    }
+
+    .games-table {
+        font-size: 0.9em;
+    }
+
+    .games-table th,
+    .games-table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        border-radius: 8px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .cell {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8em;
+    }
+
+    .column-header, .row-header {
+        min-width: 25px;
+        min-height: 25px;
+        padding: 4px;
+        font-size: 0.8em;
+    }
+}
+
